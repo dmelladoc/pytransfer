@@ -8,3 +8,8 @@ Adapted from [transfersh-cli](https://github.com/tanrax/transfersh-cli). Check t
 * Return delete code for deletions.
 * Download a file, showing a progress bar of process.
 * `zip` support? (Compress a folder and zip it)
+
+
+## Requirements
+* `requests`
+* Any [Nerd Font](https://www.nerdfonts.com) available.

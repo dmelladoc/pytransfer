@@ -1,11 +1,9 @@
 
 
 import os
-import sys
-from glob import glob
 import requests
 import pyperclip
-from argparse import ArgumentParser, FileType
+from argparse import ArgumentParser
 
 URL_TRANSFER = 'https://transfer.sh'
 
@@ -15,7 +13,7 @@ def main(args):
     if not os.path.isfile(args.filename):
         raise FileNotFoundError
     
-    print(f"󰅧  Subiendo...")
+    print(f"󰅧  Uploading...")
     try:
         with open(args.filename, "rb") as data:
             conf_file = {args.filename: data}
@@ -33,34 +31,34 @@ def main(args):
             )
 
             dl_url = req.text
-            print(f"Subida Terminada!\n{dl_url}\nCopiado en tu portapapeles (ctrl+V)")
+            print(f"󰅠  Upload complete!\n{dl_url}Copied to your clipboard (ctrl+V)")
             pyperclip.copy(dl_url)
 
     except Exception as xcp:
-        print(f"Algo fallo con la subida... {xcp}")
+        print(f"󰅤  Something wrong... {xcp}")
 
 
 
 if __name__ == "__main__":
     parser = ArgumentParser(
         prog="PyTransfer",
-        description="Permite subir un archivo a transfer.sh")
+        description="Script to quickly upload and share a file via transfer.sh")
     
     parser.add_argument(
         'filename',
-        help="Ruta a archivo a subir.",
+        help="Path to file",
     )
 
     parser.add_argument(
         "-d", "--downloads", 
         type=int, #default=1, 
-        help="Maximo de descargas que pueden realizarse."
+        help="Number of max downloads until deletion"
     )
 
     parser.add_argument(
         "-t", "--time", 
         type=int, #default=1, 
-        help="Numero de dias a mantener el archivo"
+        help="Number of days available online."
     )
 
     args = parser.parse_args()
